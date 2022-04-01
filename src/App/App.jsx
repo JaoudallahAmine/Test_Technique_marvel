@@ -8,6 +8,7 @@ import {
 } from 'react-router-dom';
 import Header from '../components/Header';
 import Search from '../components/Search';
+import Details from '../components/Details';
 import { getCharacters } from '../api';
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
     if (searchQuery !== '') {
       const chars = await getCharacters({ nameStartsWith: searchQuery });
 
+      console.log(chars);
       setCharacters(chars);
     }
   };
@@ -33,6 +35,9 @@ function App() {
 				>
 					<Search searchQuery={searchQuery} characters={characters} />
 				</Route>
+        <Route path="/:id">
+          <Details/>
+        </Route>
 			</Switch>
 		</Router>
 
